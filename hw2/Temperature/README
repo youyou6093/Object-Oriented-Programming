@@ -1,0 +1,41 @@
+1. main.cpp:8:17: error: call to constructor of 'Temperature' is ambiguous
+    Temperature t1;
+                ^
+./temperature.h:15:5: note: candidate constructor
+    Temperature();
+    ^
+./temperature.h:16:5: note: candidate constructor
+    Temperature(double a=0,char b='c');
+    ^
+
+  Solution:change Temperature(double a=0,char b=‘c’) to Temperature(double a,char b)
+
+   
+
+2.temperature.cpp:68:25: error: member function 'Convert' not viable: 'this'
+      argument has type 'const Temperature', but function is not marked const
+    double calling_in_k=d.Convert('k');
+
+  Solution:don’t call a function that is not marked as const in a const member
+        function.
+
+
+3.temperature.cpp:44:9: error: use of undeclared identifier 'degrees_in_k'; did
+      you mean 'degrees_k'?
+        degrees_in_k=convert_to_k(degrees,scale);
+
+
+   Solution:this is a typo, I should use degrees_k, which is the private data I 	
+    declared.
+
+4.temperature.cpp:53:19: error: use of undeclared identifier 'scale'
+        case 'D': format=f; return 1;
+
+ Solution: I forget to add “Temperature::” before the SetFormat Function.
+
+5../temperature.h:8:17: error: non-const static data member must be initialized
+      out of line
+    static char format='D';
+                ^      ~~~
+Solution:Initialize format in this way:”char Temperature::format=‘D’;”
+

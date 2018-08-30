@@ -1,0 +1,56 @@
+1.menu.cpp:8:17: error: too many arguments to function call, expected 0, have 1
+    my_list.Add(a);
+    ~~~~~~~~~~~ ^
+./playlist.h:12:5: note: 'Add' declared here
+    void Add();
+
+
+solution: in the declaration part, add “Song a” as the parameter of function “Add”
+
+
+2.playlist.cpp:41:17: error: return type of out-of-line definition of
+      'Playlist::Search' differs from that in the declaration
+Song& Playlist::Search(const char* t) const{
+~~~~~           ^
+./playlist.h:13:10: note: previous declaration is here
+    Song Search(const char * t) const;
+    ~~~~ ^
+solution:mismatch,add & after Song.
+
+3.playlist.cpp:76:16: error: too many arguments to function call, expected 0, have
+      1
+    int a=Find(t);
+          ~~~~ ^
+./playlist.h:22:5: note: 'Find' declared here
+    int Find();
+    ^
+
+
+solution:add const char *t as the parameter of Find();
+
+
+4.menu.cpp:68:22: note: jump bypasses variable initialization
+                Song newsong;
+                     ^
+menu.cpp:77:13: error: cannot jump from switch statement to this case label
+            case 'D':
+
+
+solution: I need add “break” to each of the “case” statement
+
+
+5. When I accidentally input a char type to the size, I have infinite loop.
+
+Solution: write following code to protect my program:
+
+ do{
+     cin>>size;
+     bad=cin.fail();
+     if(bad)
+          cout<<"Error!Re-enter:";
+     cin.clear();
+     cin.ignore(10,'\n');
+     if(size<0){
+           cout<<"Negative number is not allowed,please re-enter:";
+           bad=1;}
+      }while(bad);

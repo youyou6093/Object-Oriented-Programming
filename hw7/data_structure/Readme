@@ -1,0 +1,33 @@
+1.main.cpp:41:22: error: too few arguments to function call, single argument
+      'data' was not specified
+        my_stack.pop();
+        ~~~~~~~~~~~~ ^
+./stack.h:22:5: note: 'pop' declared here
+    bool pop( STACKTYPE &data )
+    ^
+
+solution: change pop to pop(a) because pop function actually take in 1 parameter.
+
+2../list.h:255:22: error: out-of-line definition of 'insertMiddle' does not match
+      any declaration in 'List<NODETYPE>'
+void List<NODETYPE>::insertMiddle( NODETYPE &x,int n){
+                     ^~~~~~~~~~~~
+./list.h:22:29: note: type of 1st parameter of member declaration does not match
+      definition ('const NODETYPE &' vs 'NODETYPE &')
+    void insertMiddle(const NODETYPE &, int);
+
+solution : add a constant before NODETYPE &x.
+
+3.wrong result for deletion
+
+solution: if the element i want to delete is the first element, just use the removeFromFront function.
+
+4.seg fault for deletion
+
+solution: always check whether the list is empty and whether you have reached the end of the list.
+
+
+5.wrong result for insertion
+
+solution: when the position is the first or last element of the list,just use insertAtBack and insertAtFront instead.
+

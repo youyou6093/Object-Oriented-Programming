@@ -1,0 +1,58 @@
+1.distance.cpp:16:5: error: use of undeclared identifier 'miles'; did you mean
+      'pmiles'?
+    miles+=increase;
+    ^~~~~
+    pmiles
+./distance.h:13:9: note: 'pmiles' declared here
+    int pmiles;
+
+solution: change miles to pmiles, which is the private data of my class
+        ^
+2.distance.cpp:63:33: warning: empty character constant [-Winvalid-pp-token]
+    if(d.pfeet>0)  os<<d.pfeet<<'''<<' ';
+                                ^
+distance.cpp:63:33: error: expected expression
+distance.cpp:63:40: warning: missing terminating
+      ' character [-Winvalid-pp-token]
+    if(d.pfeet>0)  os<<d.pfeet<<'''<<' ';
+
+solution:use raw output,’\’’ instead of ‘’’.
+
+
+3.distance.cpp:83:21: error: use of undeclared identifier 'check'
+    if((c!=',') || (check(d.pmiles,d.pyards,d.pfeet,d.pinches)==0)){
+                    ^
+1 error generated.
+
+solution:forgot to declare check function in the distance.h.
+
+
+4.distance.cpp:94:45: error: cannot assign to variable 'd1' with const-qualified
+      type 'const Distance &'
+    if ((d1.pmiles==d2.pmiles) && (d1.pyards=d2.pyards) && (d1.pfeet=d2....
+                                   ~~~~~~~~~^
+distance.cpp:93:33: note: variable 'd1' declared const here
+bool operator==(const Distance &d1,const Distance &d2){
+                ~~~~~~~~~~~~~~~~^~
+distance.cpp:94:69: error: cannot assign to variable 'd1' with const-qualified
+      type 'const Distance &'
+    if ((d1.pmiles==d2.pmiles) && (d1.pyards=d2.pyards) && (d1.pfeet=d2.pfee...
+                                                            ~~~~~~~~^
+distance.cpp:93:33: note: variable 'd1' declared const here
+bool operator==(const Distance &d1,const Distance &d2){
+
+
+solution: can’t change the member data of a const object. Actually this is a typo, change’=‘ to ‘==‘ fix it.
+
+
+
+5.distance.cpp:209:12: error: non-const lvalue reference to type 'Distance' cannot
+      bind to a temporary of type 'Distance *'
+    return this;                 ^
+
+solution: the return type of the function is Distance&, so I should return *this, not this.
+
+
+6.Something more about my class, multiplication function can’t take in a very big int,because int times the yards/inches/feet might overflow.
+
+The biggest value of yards is 1759 yards, so the int number take into the multiplication function cannot be bigger than maximum 32 bit integer divide 1759.

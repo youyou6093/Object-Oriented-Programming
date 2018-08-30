@@ -1,0 +1,34 @@
+1.Error: myint.cpp:415:12: error: non-const lvalue reference to type 'MyInt' cannot bind
+      to a temporary of type 'MyInt *'
+    return this;
+           ^~~~
+solution: instead of return this, I should return *this
+
+
+2.Error: myint.cpp:419:15: error: return type of out-of-line definition of
+      'MyInt::operator++' differs from that in the declaration
+MyInt& MyInt::operator++(int){
+~~~~~~        ^
+./myint.h:33:11: note: previous declaration is here
+    MyInt operator++(int);        //postfix
+    ~~~~~ ^
+myint.cpp:422:12: warning: reference to stack memory associated with local
+      variable 'copy' returned [-Wreturn-stack-address]
+    return copy;
+           ^~~~
+solution: for post fix increment, the return type should be R value.
+
+3.Error: segmentation fault 11.
+
+solution: for the grow function, I have to check whether the object is empty or not!
+
+4.False result for addition.
+
+solution: I forgot to increase the length of the character after the final steps, so if there are any increment on the most signifiant digits, it will give the wrong answer.
+
+5. Error: myint.cpp:103:1: error: 'friend' used outside of class
+friend bool operator< (const MyInt& x, const MyInt& y){
+^
+1 error generated.
+
+solution: should not use friend keyword out of myint class.

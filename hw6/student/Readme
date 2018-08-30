@@ -1,0 +1,34 @@
+
+Problems: 
+
+1. main.cpp:242:9: warning: delete called on 'Student' that is abstract but has
+      non-virtual destructor [-Wdelete-non-virtual-dtor]
+        delete something[i];
+
+solution: add a virtual before ~Student();
+
+2. no function called atoi().
+
+solution: I should’t use a function from STL library. Instead, write a function myself to convert string to int.
+
+3.  No  matching function for ifstream file(string).
+
+solution: Instead of using string as a parameter, using cstring.
+
+change input to input.c_str();
+
+4.main.cpp:141:15: error: cannot initialize a variable of type 'Student *' with an
+      rvalue of type 'Student **'
+    Student * something = new Student *[n];
+              ^           ~~~~~~~~~~~~~~~~
+
+solution: change Student * something to Student ** something
+
+5.main.cpp:177:29: error: member reference type 'Student *' is a pointer; did you
+      mean to use '->'?
+                something[i].Output(of);
+                ~~~~~~~~~~~~^
+                            ->
+
+solution: use something[i]->Output(of).
+

@@ -1,0 +1,39 @@
+Errors:
+
+
+1.”cannot define the implicit copy assignment operator for 'Triangle', because non-static const member 'MAX_SIZE' cannot use copy assignment operator”
+
+solution: I should add static before the constant min_size and max_size, so that it’s the same for all the triangle class.
+
+
+
+2.”Makefile:2: *** missing separator.  Stop.”
+
+solution: I am using Xcode, so whenever I type tab, it use 4 space instead, change the makefile editor to a normal text editor fix the problem.
+
+
+3.”./triangle.h:21:2: error: expected ';' after class”
+
+solution:Add a ‘;’ after the end of class.
+
+4.”triangle.cpp:25:12: error: use of undeclared identifier 'sqrt’”
+
+solution: Forgot to include Cmath into library.
+
+5.”triangle.cpp:81:29: error: use of undeclared identifier 'setprecision’”
+
+solution: in order to use format output, I have to use iomanip library. 
+
+
+6.Forgot to link the “triangle.cpp” and “triangle.h” in make file.
+
+7.I cannot call the private data outside of the class.
+
+8.”triangle.cpp:51:13: error: assigning to 'char' from incompatible type
+      'const char [2]’”
+
+  solution: I should use ’’ for char,not “”
+
+9. When I writing member function in triangle class, I need to type “Triangle::” before the function.
+
+10.I shouldn’t using ‘,’ in side of for loop.I should using ‘;’.
